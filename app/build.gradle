@@ -5,11 +5,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 33
     defaultConfig {
-        applicationId "com.bobekos.bobek.simplebarcodescanner"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -24,13 +23,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
-
-    testImplementation 'junit:junit:4.12'
-
-    implementation (project(path: ':scanner')) {
-        exclude module: 'support-v4'
-        exclude module: 'support-v7'
-    }
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation (project(path: ':scanner'))
 }

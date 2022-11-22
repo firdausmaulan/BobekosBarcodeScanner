@@ -193,11 +193,11 @@ class BarcodeView : FrameLayout {
     private fun getSurfaceObservable(): Observable<Boolean> {
         return Observable.create<Boolean> { emitter ->
             cameraView.holder.addCallback(object : SurfaceHolder.Callback {
-                override fun surfaceChanged(p0: SurfaceHolder?, p1: Int, p2: Int, p3: Int) {
-
+                override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
+                    // Do Nothing
                 }
 
-                override fun surfaceDestroyed(holder: SurfaceHolder?) {
+                override fun surfaceDestroyed(holder: SurfaceHolder) {
                     overlayDisposable?.dispose()
 
                     if (!emitter.isDisposed) {
@@ -206,11 +206,11 @@ class BarcodeView : FrameLayout {
 
                     barcodeScanner.releaseDetection()
 
-                    holder?.removeCallback(this)
+                    holder.removeCallback(this)
                 }
 
-                override fun surfaceCreated(holder: SurfaceHolder?) {
-                    holder?.let {
+                override fun surfaceCreated(holder: SurfaceHolder) {
+                    holder.let {
                         onSurfaceReady(emitter)
                     }
                 }

@@ -1,8 +1,10 @@
 package com.bobekos.bobek.simplebarcodescanner
 
+import android.Manifest
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.vision.CameraSource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -38,6 +40,14 @@ class MainActivity : AppCompatActivity() {
             setBtnText()
         }
 
+        requestPermission()
+    }
+
+    private fun requestPermission() {
+        val permissions = arrayOf(Manifest.permission.CAMERA)
+        ActivityCompat.requestPermissions(
+            this, permissions, 99
+        )
     }
 
     private fun setBtnText() {
